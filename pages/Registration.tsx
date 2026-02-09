@@ -17,20 +17,24 @@ const Registration: React.FC = () => {
     robotSpecs: '',
     agreedToRules: false
   });
+  const [receiptFile, setReceiptFile] = useState<File | null>(null);
 
   // LIVE Google Apps Script Web App URL
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwaqQTBA-p0iQQhhMpkdunlV-hhLiUu9LA-LarsvJGwx8EnAOqyWRV8S3ghhDS4KZIlgA/exec";
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setReceiptFile(file);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      const form = e.target as HTMLFormElement;
-      const fileInput = form.querySelector('input[type="file"]') as HTMLInputElement;
-      const file = fileInput?.files?.[0];
-
-      if (!file) {
+      if (!receiptFile) {
         alert("Please upload the transaction receipt.");
         setIsSubmitting(false);
         return;
@@ -45,7 +49,7 @@ const Registration: React.FC = () => {
           const payload = {
             ...formData,
             receiptBase64: base64Data,
-            receiptType: file.type
+            receiptType: receiptFile.type
           };
 
           // Send to Google Sheets
@@ -73,7 +77,7 @@ const Registration: React.FC = () => {
         setIsSubmitting(false);
       };
 
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(receiptFile);
     } catch (error) {
       console.error("Setup error:", error);
       alert("Something went wrong. Please refresh and try again.");
@@ -348,7 +352,7 @@ const Registration: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="flex-grow space-y-8">
+                    <div className="flex-grow space-y-8 w-full">
                       <div>
                         <h4 className="text-xl font-black text-slate-900 mb-2">Scan & Pay ₹200</h4>
                         <p className="text-slate-500 font-medium text-sm leading-relaxed">
@@ -358,15 +362,39 @@ const Registration: React.FC = () => {
 
                       <div className="space-y-4">
                         <label className="block text-[11px] font-black text-slate-400 uppercase tracking-[0.1em]">Upload Transaction Receipt</label>
-                        <div className="relative">
+                        <div className="relative group cursor-pointer">
                           <input
                             required
                             type="file"
                             accept=".jpg,.jpeg,.png,.pdf"
+                            onChange={handleFileChange}
                             className="absolute inset-0 opacity-0 cursor-pointer z-10"
                           />
-                          <div className="w-full bg-white border border-dashed border-slate-300 rounded-3xl p-6 text-center group-hover:border-sky-400 transition-colors">
-                            <span className="text-xs font-bold text-slate-400 tracking-widest uppercase group-hover:text-sky-600">Drop the payment receipt here</span>
+                          <div className={`w-full bg-white border-2 border-dashed rounded-3xl p-8 text-center transition-all ${receiptFile ? 'border-emerald-400 bg-emerald-50/30' : 'border-slate-300 hover:border-sky-400'
+                            }`}>
+                            {receiptFile ? (
+                              <div className="flex flex-col items-center space-y-3">
+                                <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center">
+                                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                  </svg>
+                                </div>
+                                <div>
+                                  <p className="text-emerald-900 font-bold text-sm">{receiptFile.name}</p>
+                                  <p className="text-emerald-600 text-[10px] font-black uppercase tracking-widest mt-1">Receipt Captured</p>
+                                </div>
+                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter hover:text-sky-600 transition-colors">Click to change</span>
+                              </div>
+                            ) : (
+                              <div className="flex flex-col items-center space-y-3">
+                                <div className="w-12 h-12 bg-slate-50 text-slate-400 rounded-full flex items-center justify-center group-hover:bg-sky-50 group-hover:text-sky-500 transition-colors">
+                                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                                  </svg>
+                                </div>
+                                <span className="text-xs font-bold text-slate-400 tracking-widest uppercase group-hover:text-sky-600 transition-colors">Upload Payment Receipt</span>
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
