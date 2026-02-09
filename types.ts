@@ -1,4 +1,3 @@
-
 export interface Coordinator {
   name: string;
   phone: string;
@@ -25,6 +24,7 @@ export interface RegistrationData {
   cityState: string;
   email: string;
   phone: string;
+  department: string;
   robotSpecs: string;
   paymentScreenshot: File | null;
   agreedToRules: boolean;

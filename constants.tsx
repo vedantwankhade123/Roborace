@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Coordinator, Prize, RuleCategory } from './types';
 
@@ -61,4 +60,19 @@ export const SCHEDULE = [
   { time: "8:00 AM", event: "Race Day Reporting", icon: "🏁" },
   { time: "10:30 AM", event: "Competition Start", icon: "⚡" },
   { time: "4:30 PM", event: "Result Announcement", icon: "🏆" },
+];
+
+export const DEPARTMENTS = [
+  "B.Tech CSE",
+  "B.Tech EXTC",
+  "B.Tech AI & ML",
+  "B.Tech Mechanical",
+  "B.Tech Electrical",
+  "B.Tech Civil",
+  "B.Tech IT",
+  "B.Tech Biotechnology",
+  "B.Pharm",
+  "MBA",
+  "MCA",
+  "Other"
 ];
