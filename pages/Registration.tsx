@@ -131,9 +131,7 @@ const Registration: React.FC = () => {
           {/* Registration Form - Main Content */}
           <div className="xl:col-span-3 p-8 xl:p-12">
             <form onSubmit={handleSubmit} className="max-w-4xl mx-auto">
-              <div className="bg-white rounded-3xl border border-slate-200 p-8 md:p-12 shadow-xl relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-sky-500 to-emerald-500"></div>
-                
+              <div className="bg-transparent rounded-3xl p-8 md:p-12 relative overflow-hidden">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
                   {/* Team Information */}
                   <div className="space-y-1.5">
@@ -145,7 +143,7 @@ const Registration: React.FC = () => {
                       onChange={handleInputChange}
                       type="text"
                       placeholder="e.g. BotMasters"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all shadow-sm"
+                      className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all shadow-sm"
                     />
                   </div>
 
@@ -156,7 +154,7 @@ const Registration: React.FC = () => {
                       name="department"
                       value={formData.department}
                       onChange={handleInputChange}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all shadow-sm appearance-none"
+                      className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all shadow-sm appearance-none"
                     >
                       <option value="">Select Department</option>
                       {DEPARTMENTS.map((dept) => (
@@ -174,7 +172,7 @@ const Registration: React.FC = () => {
                       onChange={handleInputChange}
                       type="text"
                       placeholder="Full Name"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all shadow-sm"
+                      className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all shadow-sm"
                     />
                   </div>
 
@@ -187,7 +185,7 @@ const Registration: React.FC = () => {
                       onChange={handleInputChange}
                       type="text"
                       placeholder="University Name"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all shadow-sm"
+                      className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all shadow-sm"
                     />
                   </div>
 
@@ -200,7 +198,7 @@ const Registration: React.FC = () => {
                       onChange={handleInputChange}
                       type="text"
                       placeholder="City, State"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all shadow-sm"
+                      className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all shadow-sm"
                     />
                   </div>
 
@@ -213,7 +211,7 @@ const Registration: React.FC = () => {
                       onChange={handleInputChange}
                       type="email"
                       placeholder="contact@email.com"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all shadow-sm"
+                      className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all shadow-sm"
                     />
                   </div>
 
@@ -226,7 +224,7 @@ const Registration: React.FC = () => {
                       onChange={handleInputChange}
                       type="tel"
                       placeholder="+91 ..."
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all shadow-sm"
+                      className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all shadow-sm"
                     />
                   </div>
                 </div>
@@ -240,11 +238,11 @@ const Registration: React.FC = () => {
                     onChange={handleInputChange}
                     rows={6}
                     placeholder="Hardware specifications, motor rating, control mechanism, special features..."
-                    className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 text-slate-900 text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all shadow-sm resize-none leading-relaxed"
+                    className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 text-slate-900 text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all shadow-sm resize-none leading-relaxed"
                   ></textarea>
                 </div>
 
-                <div className="p-8 bg-slate-50 rounded-2xl border border-dashed border-slate-200 mb-10">
+                <div className="p-8 bg-white rounded-2xl border border-dashed border-slate-200 mb-10">
                   <div className="flex items-center space-x-6 mb-6">
                     <div className="w-16 h-16 bg-sky-100 rounded-xl flex items-center justify-center text-sky-600">
                       <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -263,7 +261,7 @@ const Registration: React.FC = () => {
                   />
                 </div>
 
-                <div className="flex items-start space-x-6 mb-10 p-6 bg-slate-50 rounded-2xl">
+                <div className="flex items-start space-x-6 mb-10 p-6 bg-white rounded-2xl">
                   <input
                     required
                     id="agreed"
