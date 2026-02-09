@@ -100,9 +100,9 @@ const Registration: React.FC = () => {
           <div className="w-24 h-24 bg-emerald-50 text-emerald-500 rounded-3xl flex items-center justify-center mx-auto mb-8 text-5xl shadow-lg rotate-3">
             ✓
           </div>
-          <h1 className="text-4xl font-black text-slate-900 mb-4 tracking-tight">MISSION SUCCESS!</h1>
+          <h1 className="text-4xl font-black text-slate-900 mb-4 tracking-tight uppercase">Registration Successful!</h1>
           <p className="text-slate-500 mb-10 leading-relaxed font-medium">
-            Your registration request for RoboRace 26 has been logged. Our coordination team will verify your technical specs and contact you within 24 hours.
+            Your registration request for RoboRace 26 has been logged. Our coordination team will verify your technical specs and payment receipt and contact you within 24 hours.
           </p>
           <div className="space-y-6">
             <div className="p-8 bg-slate-50 rounded-3xl text-left border border-slate-100">
@@ -113,8 +113,26 @@ const Registration: React.FC = () => {
                 <div className="flex justify-between items-center"><span className="text-slate-400 font-bold text-xs uppercase">Contact</span> <span className="text-slate-900 font-extrabold">{formData.email}</span></div>
               </div>
             </div>
-            <ModernButton onClick={() => window.location.hash = '/'} variant="outline" className="w-full">
-              Back to Command Center
+            <ModernButton
+              onClick={() => {
+                setIsSubmitted(false);
+                setReceiptFile(null);
+                setFormData({
+                  teamName: '',
+                  leaderName: '',
+                  collegeName: '',
+                  cityState: '',
+                  email: '',
+                  phone: '',
+                  department: '',
+                  robotSpecs: '',
+                  agreedToRules: false
+                });
+              }}
+              variant="outline"
+              className="w-full"
+            >
+              Register Another Team
             </ModernButton>
           </div>
         </div>
