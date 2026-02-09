@@ -20,7 +20,7 @@ const Registration: React.FC = () => {
   const [receiptFile, setReceiptFile] = useState<File | null>(null);
 
   // LIVE Google Apps Script Web App URL
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwaqQTBA-p0iQQhhMpkdunlV-hhLiUu9LA-LarsvJGwx8EnAOqyWRV8S3ghhDS4KZIlgA/exec";
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwmM0rRSItbEvOiR2Z0j3ZyhsKFoZKmTbOLCKA1DC_NlyZTOJlVmrz3IUFc8RFP1PIMWg/exec";
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
