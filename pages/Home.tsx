@@ -8,31 +8,46 @@ const Home: React.FC = () => {
 
   return (
     <div className="pt-20">
-      {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-20 bg-slate-50">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+      {/* Hero Section with Video Background */}
+      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-20 bg-slate-900">
+        {/* Video Background */}
+        <div className="absolute inset-0 w-full h-full">
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            className="w-full h-full object-cover"
+          >
+            <source src="herovideo.mp4" type="video/mp4" />
+          </video>
+          {/* Dark Overlay for Text Readability */}
+          <div className="absolute inset-0 bg-black/50"></div>
+          {/* Pattern Overlay */}
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        </div>
+        
         <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
           <div className="inline-block px-4 py-1.5 rounded-full bg-sky-100 text-sky-700 font-bold text-[10px] tracking-[0.2em] mb-6 border border-sky-200 uppercase">
             National Level Engineering Competition
           </div>
           
           <div className="mb-4">
-            <span className="text-sky-600 font-extrabold text-sm md:text-base tracking-[0.3em] uppercase block mb-2">
+            <span className="text-white font-extrabold text-sm md:text-base tracking-[0.3em] uppercase block mb-2">
               Engineer. Race. Conquer.
             </span>
-            <h1 className="text-6xl md:text-8xl font-black text-slate-900 leading-tight tracking-tighter">
+            <h1 className="text-6xl md:text-8xl font-black text-white leading-tight tracking-tighter">
               ROBORACE<br/>
-              <span className="text-sky-600">2026</span>
+              <span className="text-sky-400">2026</span>
             </h1>
           </div>
 
-          <p className="text-lg md:text-xl text-slate-600 font-medium mb-10 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-slate-200 font-medium mb-10 max-w-2xl mx-auto">
             {TAGLINE}
           </p>
           
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-12">
-            <div className="flex items-center space-x-2 text-slate-500 bg-white px-5 py-2.5 rounded-full border border-slate-200 shadow-sm">
-              <span className="text-sky-600 font-bold">VENUE:</span>
+            <div className="flex items-center space-x-2 text-slate-200 bg-white/20 px-5 py-2.5 rounded-full border border-white/30 shadow-sm backdrop-blur-sm">
+              <span className="text-sky-400 font-bold">VENUE:</span>
               <span className="font-semibold">{VENUE}</span>
             </div>
           </div>
@@ -41,7 +56,7 @@ const Home: React.FC = () => {
             <ModernButton onClick={() => navigate('/register')} className="w-full sm:w-auto">
               Register Now
             </ModernButton>
-            <ModernButton variant="outline" onClick={() => navigate('/rules')} className="w-full sm:w-auto">
+            <ModernButton variant="outline" className="w-full sm:w-auto bg-white/10 border-white/30 text-white hover:bg-white/20">
               View Guidelines
             </ModernButton>
           </div>
