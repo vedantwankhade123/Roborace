@@ -26,7 +26,8 @@ const Registration: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      const fileInput = (e.target as HTMLFormElement).querySelector('input[type="file"]') as HTMLInputElement;
+      const form = e.target as HTMLFormElement;
+      const fileInput = form.querySelector('input[type="file"]') as HTMLInputElement;
       const file = fileInput?.files?.[0];
 
       if (!file) {
@@ -38,27 +39,33 @@ const Registration: React.FC = () => {
       // Read file as Base64 string
       const reader = new FileReader();
       reader.onloadend = async () => {
-        const base64Data = (reader.result as string).split(',')[1];
+        try {
+          const base64Data = (reader.result as string).split(',')[1];
 
-        const payload = {
-          ...formData,
-          receiptBase64: base64Data,
-          receiptType: file.type
-        };
+          const payload = {
+            ...formData,
+            receiptBase64: base64Data,
+            receiptType: file.type
+          };
 
-        // Send to Google Sheets
-        await fetch(SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(payload)
-        });
+          // Send to Google Sheets
+          await fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
 
-        setIsSubmitted(true);
-        setIsSubmitting(false);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+          setIsSubmitted(true);
+          setIsSubmitting(false);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (innerError) {
+          console.error("Submission error:", innerError);
+          alert("Submission failed. Please check your connection.");
+          setIsSubmitting(false);
+        }
       };
 
       reader.onerror = () => {
@@ -68,8 +75,8 @@ const Registration: React.FC = () => {
 
       reader.readAsDataURL(file);
     } catch (error) {
-      console.error("Submission error:", error);
-      alert("Something went wrong. Please check your connection and try again.");
+      console.error("Setup error:", error);
+      alert("Something went wrong. Please refresh and try again.");
       setIsSubmitting(false);
     }
   };
@@ -389,8 +396,7 @@ const Registration: React.FC = () => {
                     <ModernButton
                       type="submit"
                       disabled={isSubmitting}
-                      className={`w-full max-w-md py-5 text-base font-black rounded-2xl shadow-xl transition-all uppercase tracking-widest ${isSubmitting ? 'bg-slate-400 cursor-not-allowed' : 'shadow-sky-600/20'
-                        }`}
+                      className={`w-full max-w-md py-5 text-base font-black rounded-2xl shadow-xl transition-all uppercase tracking-widest ${isSubmitting ? 'bg-slate-400 cursor-not-allowed' : 'shadow-sky-600/20'}`}
                     >
                       {isSubmitting ? (
                         <span className="flex items-center space-x-3">
