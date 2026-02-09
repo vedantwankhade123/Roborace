@@ -33,9 +33,10 @@ const Home: React.FC = () => {
             className="w-full h-full object-cover"
           >
             <source src="/Assets/videohero.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
           </video>
           {/* Dark Overlay for Text Readability */}
-          <div className="absolute inset-0 bg-black/50"></div>
+          <div className="absolute inset-0 bg-black/70"></div>
           {/* Pattern Overlay */}
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         </div>
@@ -49,28 +50,28 @@ const Home: React.FC = () => {
             <span className="text-white font-extrabold text-sm md:text-base tracking-[0.3em] uppercase block mb-2">
               Engineer. Race. Conquer.
             </span>
-            <h1 className="text-6xl md:text-8xl font-black text-white leading-tight tracking-tighter">
+            <h1 className="text-5xl sm:text-6xl md:text-8xl font-black text-white leading-tight tracking-tighter">
               ROBORACE<br />
               <span className="text-sky-400">2026</span>
             </h1>
           </div>
 
-          <p className="text-lg md:text-xl text-slate-200 font-medium mb-10 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-slate-200 font-medium mb-10 max-w-2xl mx-auto px-4">
             {TAGLINE}
           </p>
 
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-12">
-            <div className="flex items-center space-x-2 text-slate-200 bg-white/20 px-5 py-2.5 rounded-full border border-white/30 shadow-sm backdrop-blur-sm">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6 px-4">
+            <div className="flex items-center space-x-2 text-white bg-slate-800 px-4 sm:px-5 py-2.5 rounded-full border border-slate-700 shadow-lg text-sm sm:text-base">
               <span className="text-sky-400 font-bold">VENUE:</span>
               <span className="font-semibold">{VENUE}</span>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <ModernButton onClick={() => navigate('/register')} className="w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 px-4">
+            <ModernButton onClick={() => navigate('/register')} className="w-full sm:w-auto max-w-xs">
               Register Now
             </ModernButton>
-            <ModernButton variant="outline" className="w-full sm:w-auto bg-white/10 border-white/30 text-white hover:bg-white/20">
+            <ModernButton variant="outline" className="w-full sm:w-auto max-w-xs bg-white/10 border-white/30 text-white hover:bg-white/20">
               View Guidelines
             </ModernButton>
           </div>
@@ -83,10 +84,10 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="order-1">
-              <h2 className="text-4xl md:text-5xl font-black mb-8 text-slate-900 tracking-tight leading-none">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-8 text-slate-900 tracking-tight leading-none">
                 INNOVATION IN <span className="text-sky-600">MOTION</span>
               </h2>
-              <div className="space-y-6 text-slate-600 text-lg leading-relaxed max-w-2xl">
+              <div className="space-y-6 text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl">
                 <p>
                   RoboRace 26 is a premier robotics competition that bridges academia and advanced engineering. Organized by the <span className="text-sky-600 font-bold underline decoration-sky-200 decoration-4 underline-offset-4">{ORGANIZER}</span>, we aim to inspire future technologists.
                 </p>
@@ -95,14 +96,14 @@ const Home: React.FC = () => {
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-12 mt-12">
-                <div className="group">
-                  <div className="text-5xl font-black text-slate-900 mb-1 group-hover:text-sky-600 transition-colors">50+</div>
-                  <div className="text-sm text-slate-500 font-bold uppercase tracking-wider">Expected Teams</div>
+              <div className="flex flex-wrap gap-8 sm:gap-12 mt-12 justify-center lg:justify-start">
+                <div className="group text-center lg:text-left">
+                  <div className="text-4xl sm:text-5xl font-black text-slate-900 mb-1 group-hover:text-sky-600 transition-colors">50+</div>
+                  <div className="text-xs sm:text-sm text-slate-500 font-bold uppercase tracking-wider">Expected Teams</div>
                 </div>
-                <div className="group">
-                  <div className="text-5xl font-black text-slate-900 mb-1 group-hover:text-sky-600 transition-colors">₹15K</div>
-                  <div className="text-sm text-slate-500 font-bold uppercase tracking-wider">Prize Pool</div>
+                <div className="group text-center lg:text-left">
+                  <div className="text-4xl sm:text-5xl font-black text-slate-900 mb-1 group-hover:text-sky-600 transition-colors">₹15K</div>
+                  <div className="text-xs sm:text-sm text-slate-500 font-bold uppercase tracking-wider">Prize Pool</div>
                 </div>
               </div>
             </div>
@@ -137,7 +138,7 @@ const Home: React.FC = () => {
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black mb-4 text-white uppercase tracking-tight">CHAMPIONSHIP AWARDS</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 text-white uppercase tracking-tight">CHAMPIONSHIP AWARDS</h2>
             <div className="w-24 h-1 bg-sky-600 mx-auto"></div>
           </div>
 
@@ -183,7 +184,7 @@ const Home: React.FC = () => {
             <div className="inline-block px-4 py-1.5 rounded-full bg-slate-50 text-slate-500 font-black text-[10px] tracking-[0.3em] mb-4 border border-slate-100 uppercase">
               Mission Roadmap
             </div>
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 uppercase tracking-tight">Competition <span className="text-sky-600">Timeline</span></h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 uppercase tracking-tight">Competition <span className="text-sky-600">Timeline</span></h2>
           </div>
 
           <div className="relative">
@@ -219,7 +220,7 @@ const Home: React.FC = () => {
       <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 uppercase tracking-tight">COORDINATORS</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 uppercase tracking-tight">COORDINATORS</h2>
             <p className="text-slate-500 text-sm mt-2 font-medium">Reach out for any queries or technical support</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

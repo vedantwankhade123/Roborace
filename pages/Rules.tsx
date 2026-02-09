@@ -16,7 +16,7 @@ const Rules: React.FC = () => {
           <div className="inline-block px-4 py-1.5 rounded-full bg-sky-50 text-sky-600 font-black text-[10px] tracking-[0.2em] mb-4 border border-sky-100 uppercase">
             Official Guidelines
           </div>
-          <h1 className="text-5xl md:text-6xl font-black text-slate-900 mb-6 uppercase tracking-tight leading-none">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 mb-4 tracking-tight leading-none">
             COMMUNICATION <span className="text-sky-600">HANDBOOK</span>
           </h1>
           <p className="text-slate-500 font-medium text-lg max-w-2xl mx-auto">

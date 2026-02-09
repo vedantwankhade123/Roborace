@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import ModernButton from '../components/NeonButton';
 import { DEPARTMENTS } from '../constants';
 import roboBg from '../Assets/robobg.png';
+import { db } from '../lib/firebase';
+import { collection, addDoc } from 'firebase/firestore';
+import { uploadToCloudinary } from '../lib/cloudinary';
 
 const Registration: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -25,6 +28,13 @@ const Registration: React.FC = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      // Check file size (5MB = 5 * 1024 * 1024 bytes)
+      const maxSize = 5 * 1024 * 1024;
+      if (file.size > maxSize) {
+        alert('File size exceeds 5MB. Please upload a smaller image.');
+        e.target.value = ''; // Clear the file input
+        return;
+      }
       setReceiptFile(file);
     }
   };
@@ -40,49 +50,25 @@ const Registration: React.FC = () => {
         return;
       }
 
-      // Read file as Base64 string
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-        try {
-          const base64Data = (reader.result as string).split(',')[1];
+      // 1. Upload to Cloudinary
+      const receiptUrl = await uploadToCloudinary(receiptFile);
 
-          const payload = {
-            ...formData,
-            receiptBase64: base64Data,
-            receiptType: receiptFile.type
-          };
-
-          console.log("Transmitting payload to Google:", payload);
-
-          // Send to Google Sheets
-          await fetch(SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-              'Content-Type': 'text/plain'
-            },
-            body: JSON.stringify(payload)
-          });
-
-          setIsSubmitted(true);
-          setIsSubmitting(false);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } catch (innerError) {
-          console.error("Submission error:", innerError);
-          alert("Submission failed. Please check your connection.");
-          setIsSubmitting(false);
-        }
+      // 2. Save to Firestore
+      const registrationData = {
+        ...formData,
+        receiptUrl,
+        submittedAt: new Date().toISOString(),
+        status: 'pending' // Initial status for admins to process
       };
 
-      reader.onerror = () => {
-        alert("Failed to read file. Please try again.");
-        setIsSubmitting(false);
-      };
+      await addDoc(collection(db, 'registrations'), registrationData);
 
-      reader.readAsDataURL(receiptFile);
+      setIsSubmitted(true);
+      setIsSubmitting(false);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {
-      console.error("Setup error:", error);
-      alert("Something went wrong. Please refresh and try again.");
+      console.error("Submission error:", error);
+      alert("Submission failed. Please check your connection and configuration.");
       setIsSubmitting(false);
     }
   };

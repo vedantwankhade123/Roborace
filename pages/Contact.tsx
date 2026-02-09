@@ -14,10 +14,10 @@ const Contact: React.FC = () => {
           <div className="inline-block px-4 py-1.5 rounded-full bg-slate-50 text-slate-500 font-black text-[10px] tracking-[0.2em] mb-4 border border-slate-100 uppercase">
             Get In Touch
           </div>
-          <h1 className="text-5xl md:text-6xl font-black text-slate-900 mb-6 uppercase tracking-tight leading-none">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 mb-6 uppercase tracking-tight leading-none">
             CONTACT <span className="text-sky-600">COMMAND</span>
           </h1>
-          <p className="text-slate-500 font-medium text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-slate-500 font-medium text-base sm:text-lg max-w-2xl mx-auto leading-relaxed px-4">
             Have technical queries or administrative questions? Our coordination team is ready to assist you in your championship journey.
           </p>
         </div>
@@ -27,18 +27,18 @@ const Contact: React.FC = () => {
             <div className="bg-white border border-slate-100 p-10 lg:p-12 rounded-[40px] shadow-sm hover:shadow-xl transition-all duration-500 h-full flex flex-col justify-center group">
               <h3 className="text-[10px] font-black text-sky-600 mb-8 uppercase tracking-[0.3em]">Administrative Headquarters</h3>
 
-              <div className="space-y-6 mb-12">
-                <p className="text-3xl font-black text-slate-900 leading-tight tracking-tight">
+              <div className="space-y-6 mb-12 text-center lg:text-left">
+                <p className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">
                   {ORGANIZER}
                 </p>
-                <div className="space-y-1 text-slate-500 font-medium text-lg italic">
+                <div className="space-y-1 text-slate-500 font-medium text-base sm:text-lg italic">
                   <p>G.H. Raisoni University Campus, Badnera Road</p>
                   <p>Amravati, Maharashtra - 444607</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-10 border-t border-slate-50">
-                <div className="flex items-center space-x-5 group/item">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-3 sm:space-y-0 sm:space-x-5 group/item text-center sm:text-left">
                   <div className="w-14 h-14 rounded-2xl bg-sky-50 flex items-center justify-center text-sky-600 shadow-sm group-hover/item:scale-110 transition-transform group-hover/item:bg-sky-600 group-hover/item:text-white">
                     <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -50,7 +50,7 @@ const Contact: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-5 group/item">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-3 sm:space-y-0 sm:space-x-5 group/item text-center sm:text-left">
                   <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-600 shadow-sm group-hover/item:scale-110 transition-transform group-hover/item:bg-slate-900 group-hover/item:text-white">
                     <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />

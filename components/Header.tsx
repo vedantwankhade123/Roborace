@@ -32,9 +32,9 @@ const Header: React.FC = () => {
   const isTransparent = isHome && !scrolled;
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isTransparent
+    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 font-poppins ${isTransparent
       ? "bg-transparent"
-      : "bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm"
+      : "bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm"
       }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
@@ -46,12 +46,12 @@ const Header: React.FC = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-[11px] font-bold transition-colors tracking-widest hover:text-sky-500 ${isActive(link.path)
+                className={`text-[12px] font-black transition-colors tracking-[0.2em] hover:text-sky-500 ${isActive(link.path)
                   ? 'text-sky-500'
                   : (isTransparent ? 'text-white/80' : 'text-slate-500')
                   }`}
@@ -59,6 +59,17 @@ const Header: React.FC = () => {
                 {link.name.toUpperCase()}
               </Link>
             ))}
+
+            {/* Admin Access Button - Simplified to 'Admin' */}
+            <Link
+              to="/admin"
+              className={`px-6 py-2 rounded-xl text-[11px] font-black uppercase tracking-[0.15em] transition-all shadow-lg ${isTransparent
+                ? 'bg-white text-slate-900 shadow-white/10 hover:bg-sky-50'
+                : 'bg-sky-600 text-white shadow-sky-600/20 hover:bg-sky-700'
+                }`}
+            >
+              Admin
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -95,6 +106,13 @@ const Header: React.FC = () => {
                 {link.name}
               </Link>
             ))}
+            <Link
+              to="/admin"
+              onClick={() => setIsOpen(false)}
+              className="block px-3 py-3 rounded-xl text-sm font-black text-white bg-sky-600 uppercase tracking-widest text-center shadow-lg shadow-sky-600/20"
+            >
+              Admin
+            </Link>
           </div>
         </div>
       )}
