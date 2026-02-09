@@ -56,7 +56,7 @@ const AdminDashboard: React.FC = () => {
     const [expandedRow, setExpandedRow] = useState<string | null>(null);
     const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
     const [viewDetailsModal, setViewDetailsModal] = useState<RegistrationData | null>(null);
-    const [confirmAction, setConfirmAction] = useState<{ type: 'verify' | 'reject' | 'delete', id: string } | null>(null);
+    const [confirmAction, setConfirmAction] = useState<{ type: 'delete', id: string } | null>(null);
     const [imageZoom, setImageZoom] = useState(100);
     const navigate = useNavigate();
 
@@ -103,14 +103,6 @@ const AdminDashboard: React.FC = () => {
         setFilteredData(result);
     }, [searchTerm, statusFilter, registrations]);
 
-    const handleStatusUpdate = async (id: string, newStatus: 'verified' | 'rejected') => {
-        try {
-            await updateDoc(doc(db, 'registrations', id), { status: newStatus });
-            setConfirmAction(null);
-        } catch (err) {
-            console.error(err);
-        }
-    };
 
     const handleDelete = async (id: string) => {
         try {
@@ -328,26 +320,6 @@ const AdminDashboard: React.FC = () => {
                                             </td>
                                             <td className="px-6 py-5" onClick={(e) => e.stopPropagation()}>
                                                 <div className="flex justify-center items-center gap-1">
-                                                    {reg.status === 'pending' ? (
-                                                        <>
-                                                            <button
-                                                                onClick={() => setConfirmAction({ type: 'verify', id: reg.id })}
-                                                                title="Verify"
-                                                                className="p-2 text-emerald-500 hover:bg-emerald-500/10 rounded-lg transition-colors"
-                                                            >
-                                                                <CheckCircle size={16} />
-                                                            </button>
-                                                            <button
-                                                                onClick={() => setConfirmAction({ type: 'reject', id: reg.id })}
-                                                                title="Reject"
-                                                                className="p-2 text-red-500 hover:bg-red-500/10 rounded-lg transition-colors"
-                                                            >
-                                                                <XCircle size={16} />
-                                                            </button>
-                                                        </>
-                                                    ) : (
-                                                        <div className="w-16" />
-                                                    )}
                                                     <button
                                                         onClick={() => setConfirmAction({ type: 'delete', id: reg.id })}
                                                         title="Delete"
@@ -670,23 +642,12 @@ const AdminDashboard: React.FC = () => {
                                             onClick={(e) => e.stopPropagation()}
                                         >
                                             <div className="flex flex-col items-center text-center">
-                                                <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 border ${confirmAction.type === 'verify' ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' :
-                                                    confirmAction.type === 'reject' ? 'bg-amber-500/10 text-amber-500 border-amber-500/20' :
-                                                        'bg-red-500/10 text-red-500 border-red-500/20'
-                                                    }`}>
-                                                    {confirmAction.type === 'verify' ? <CheckCircle size={28} /> :
-                                                        confirmAction.type === 'reject' ? <XCircle size={28} /> :
-                                                            <Trash2 size={28} />}
+                                                <div className="w-16 h-16 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center mb-6 border border-red-500/20">
+                                                    <Trash2 size={28} />
                                                 </div>
-                                                <h3 className="text-xl font-bold text-white mb-2">
-                                                    {confirmAction.type === 'verify' ? 'Verify Registration' :
-                                                        confirmAction.type === 'reject' ? 'Reject Registration' :
-                                                            'Delete Registration'}
-                                                </h3>
+                                                <h3 className="text-xl font-bold text-white mb-2">Delete Registration</h3>
                                                 <p className="text-[#8e8e8e] text-sm mb-8 leading-relaxed">
-                                                    {confirmAction.type === 'verify' ? 'Are you sure you want to verify this registration? This will mark it as approved.' :
-                                                        confirmAction.type === 'reject' ? 'Are you sure you want to reject this registration? The team will be notified of the rejection.' :
-                                                            'Are you sure you want to permanently delete this registration? This action cannot be undone.'}
+                                                    Are you sure you want to permanently delete this registration? This action cannot be undone.
                                                 </p>
                                                 <div className="flex w-full gap-3">
                                                     <button
@@ -696,21 +657,10 @@ const AdminDashboard: React.FC = () => {
                                                         Cancel
                                                     </button>
                                                     <button
-                                                        onClick={() => {
-                                                            if (confirmAction.type === 'delete') {
-                                                                handleDelete(confirmAction.id);
-                                                            } else {
-                                                                handleStatusUpdate(confirmAction.id, confirmAction.type === 'verify' ? 'verified' : 'rejected');
-                                                            }
-                                                        }}
-                                                        className={`flex-1 py-3 text-white rounded-xl text-xs font-black uppercase tracking-widest transition-all shadow-lg ${confirmAction.type === 'verify' ? 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-600/20' :
-                                                            confirmAction.type === 'reject' ? 'bg-amber-600 hover:bg-amber-700 shadow-amber-600/20' :
-                                                                'bg-red-600 hover:bg-red-700 shadow-red-600/20'
-                                                            }`}
+                                                        onClick={() => handleDelete(confirmAction.id)}
+                                                        className="flex-1 py-3 bg-red-600 hover:bg-red-700 text-white rounded-xl text-xs font-black uppercase tracking-widest transition-all shadow-lg shadow-red-600/20"
                                                     >
-                                                        {confirmAction.type === 'verify' ? 'Verify' :
-                                                            confirmAction.type === 'reject' ? 'Reject' :
-                                                                'Delete'}
+                                                        Delete
                                                     </button>
                                                 </div>
                                             </div>
