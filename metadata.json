@@ -1,0 +1,8 @@
+
+{
+  "name": "RoboRace 26",
+  "description": "Official national-level robo racing competition website for G.H. Raisoni University, Amravati. Join the ultimate racing bots challenge.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
