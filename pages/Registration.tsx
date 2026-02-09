@@ -52,6 +52,8 @@ const Registration: React.FC = () => {
             receiptType: receiptFile.type
           };
 
+          console.log("Transmitting payload to Google:", payload);
+
           // Send to Google Sheets
           await fetch(SCRIPT_URL, {
             method: 'POST',
