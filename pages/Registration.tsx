@@ -18,8 +18,8 @@ const Registration: React.FC = () => {
     agreedToRules: false
   });
 
-  // REPLACE THIS with your Google Apps Script Web App URL after deploying
-  const SCRIPT_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
+  // LIVE Google Apps Script Web App URL
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwaqQTBA-p0iQQhhMpkdunlV-hhLiUu9LA-LarsvJGwx8EnAOqyWRV8S3ghhDS4KZIlgA/exec";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
