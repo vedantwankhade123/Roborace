@@ -2,41 +2,55 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ModernButton from '../components/NeonButton';
 import { EVENT_NAME, TAGLINE, VENUE, PRIZES, COORDINATORS, ORGANIZER, SCHEDULE } from '../constants';
+import { ClipboardList, Flag, Zap, Trophy } from 'lucide-react';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
 
+  // Map icon strings (emojis) to Lucide components if needed, or just hardcode if the index is known
+  // For simplicity and better control, I'll use a mapping or just reference them in the loop
+  const getIcon = (itemEvent: string) => {
+    switch (itemEvent) {
+      case "Registration Deadline": return <ClipboardList className="w-6 h-6" />;
+      case "Race Day Reporting": return <Flag className="w-6 h-6" />;
+      case "Competition Start": return <Zap className="w-6 h-6" />;
+      case "Result Announcement": return <Trophy className="w-6 h-6" />;
+      default: return <Zap className="w-6 h-6" />;
+    }
+  };
+
   return (
-    <div className="pt-20">
+    <div className="">
       {/* Hero Section with Video Background */}
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-20 bg-slate-900">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-20 bg-slate-900">
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full">
-          <video 
-            autoPlay 
-            muted 
-            loop 
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
             className="w-full h-full object-cover"
           >
-            <source src="herovideo.mp4" type="video/mp4" />
+            <source src="/Assets/videohero.mp4" type="video/mp4" />
           </video>
           {/* Dark Overlay for Text Readability */}
           <div className="absolute inset-0 bg-black/50"></div>
           {/* Pattern Overlay */}
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         </div>
-        
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
           <div className="inline-block px-4 py-1.5 rounded-full bg-sky-100 text-sky-700 font-bold text-[10px] tracking-[0.2em] mb-6 border border-sky-200 uppercase">
             National Level Engineering Competition
           </div>
-          
+
           <div className="mb-4">
             <span className="text-white font-extrabold text-sm md:text-base tracking-[0.3em] uppercase block mb-2">
               Engineer. Race. Conquer.
             </span>
             <h1 className="text-6xl md:text-8xl font-black text-white leading-tight tracking-tighter">
-              ROBORACE<br/>
+              ROBORACE<br />
               <span className="text-sky-400">2026</span>
             </h1>
           </div>
@@ -44,7 +58,7 @@ const Home: React.FC = () => {
           <p className="text-lg md:text-xl text-slate-200 font-medium mb-10 max-w-2xl mx-auto">
             {TAGLINE}
           </p>
-          
+
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-12">
             <div className="flex items-center space-x-2 text-slate-200 bg-white/20 px-5 py-2.5 rounded-full border border-white/30 shadow-sm backdrop-blur-sm">
               <span className="text-sky-400 font-bold">VENUE:</span>
@@ -80,7 +94,7 @@ const Home: React.FC = () => {
                   The competition focuses on precision engineering, rapid problem solving, and real-time control. Join hundreds of students across India in this technical pursuit.
                 </p>
               </div>
-              
+
               <div className="flex flex-wrap gap-12 mt-12">
                 <div className="group">
                   <div className="text-5xl font-black text-slate-900 mb-1 group-hover:text-sky-600 transition-colors">50+</div>
@@ -92,12 +106,12 @@ const Home: React.FC = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="relative order-2">
               <div className="aspect-video lg:aspect-[4/3] overflow-hidden rounded-3xl soft-shadow border border-slate-100 bg-slate-100 relative group">
-                <img 
-                  src="robo-race.png" 
-                  alt="Official Robo Race Track" 
+                <img
+                  src="/Assets/robo race.png"
+                  alt="Official Robo Race Track"
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -109,7 +123,7 @@ const Home: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Racing Arena</div>
-                    <div className="text-slate-900 font-extrabold text-lg leading-tight">Professional<br/>Obstacle Track</div>
+                    <div className="text-slate-900 font-extrabold text-lg leading-tight">Professional<br />Obstacle Track</div>
                   </div>
                 </div>
               </div>
@@ -126,7 +140,7 @@ const Home: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-black mb-4 text-white uppercase tracking-tight">CHAMPIONSHIP AWARDS</h2>
             <div className="w-24 h-1 bg-sky-600 mx-auto"></div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
             {/* 2nd Prize */}
             <div className="p-8 rounded-3xl bg-slate-800/50 backdrop-blur-sm border border-slate-700 text-center order-2 md:order-1 transition-all hover:border-slate-500 group">
@@ -160,22 +174,43 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Schedule Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-3xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-16 text-center text-slate-900 uppercase tracking-tight">TIMELINE</h2>
-          <div className="space-y-6">
-            {SCHEDULE.map((item, idx) => (
-              <div key={idx} className="flex items-center p-6 rounded-xl border border-slate-100 bg-slate-50 hover:border-sky-200 transition-colors group cursor-default">
-                <div className="w-12 h-12 rounded-lg bg-sky-600 text-white flex items-center justify-center text-xl shrink-0 group-hover:scale-110 transition-transform">
-                  {item.icon}
+      {/* Schedule Section - Horizontal Timeline */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02] pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <div className="text-center mb-24">
+            <div className="inline-block px-4 py-1.5 rounded-full bg-slate-50 text-slate-500 font-black text-[10px] tracking-[0.3em] mb-4 border border-slate-100 uppercase">
+              Mission Roadmap
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 uppercase tracking-tight">Competition <span className="text-sky-600">Timeline</span></h2>
+          </div>
+
+          <div className="relative">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+              {SCHEDULE.map((item, idx) => (
+                <div key={idx} className="relative group/main">
+
+                  {/* Content Card - Single Row Layout */}
+                  <div className="p-8 rounded-[32px] bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 relative group/card cursor-default h-full flex flex-col items-center text-center">
+                    <div className="w-16 h-16 rounded-2xl bg-sky-50 flex items-center justify-center text-sky-600 group-hover/card:bg-sky-600 group-hover/card:text-white transition-all duration-500 shadow-sm mb-6">
+                      {getIcon(item.event)}
+                    </div>
+
+                    <div className="text-sky-600 font-black text-[10px] tracking-widest uppercase mb-3">
+                      {item.time}
+                    </div>
+
+                    <h3 className="text-xl font-black text-slate-900 mb-2 uppercase tracking-tight">
+                      {item.event}
+                    </h3>
+                    <p className="text-slate-500 font-medium text-xs leading-relaxed max-w-[200px]">
+                      Precision execution and technical verification in progress for the championship roadmap.
+                    </p>
+                  </div>
                 </div>
-                <div className="ml-6 flex-grow">
-                  <div className="font-bold text-slate-900 text-sm">{item.event}</div>
-                  <div className="text-slate-500 text-sm font-medium">{item.time}</div>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
