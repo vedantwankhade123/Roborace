@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ModernButton from '../components/NeonButton';
 import { DEPARTMENTS } from '../constants';
-import roboBg from '../Assets/robobg.png';
+import roboBg from '/Assets/robobg.png';
 import { db } from '../lib/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { uploadToCloudinary } from '../lib/cloudinary';
