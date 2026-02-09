@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ModernButton from '../components/NeonButton';
@@ -82,7 +81,7 @@ const Home: React.FC = () => {
             <div className="relative order-2">
               <div className="aspect-video lg:aspect-[4/3] overflow-hidden rounded-3xl soft-shadow border border-slate-100 bg-slate-100 relative group">
                 <img 
-                  src="robo race.png" 
+                  src="robo-race.png" 
                   alt="Official Robo Race Track" 
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
